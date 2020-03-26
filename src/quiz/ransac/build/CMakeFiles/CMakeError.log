@@ -1,0 +1,55 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/hyin/code/udacity_repo/SFND_Lidar_Obstacle_Detection/src/quiz/ransac/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_703b9/fast"
+/usr/bin/make -f CMakeFiles/cmTC_703b9.dir/build.make CMakeFiles/cmTC_703b9.dir/build
+make[1]: Entering directory '/home/hyin/code/udacity_repo/SFND_Lidar_Obstacle_Detection/src/quiz/ransac/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_703b9.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_703b9.dir/CheckSymbolExists.c.o   -c /home/hyin/code/udacity_repo/SFND_Lidar_Obstacle_Detection/src/quiz/ransac/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_703b9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_703b9.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_703b9.dir/CheckSymbolExists.c.o  -o cmTC_703b9 
+CMakeFiles/cmTC_703b9.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_703b9.dir/build.make:97: recipe for target 'cmTC_703b9' failed
+make[1]: *** [cmTC_703b9] Error 1
+make[1]: Leaving directory '/home/hyin/code/udacity_repo/SFND_Lidar_Obstacle_Detection/src/quiz/ransac/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_703b9/fast' failed
+make: *** [cmTC_703b9/fast] Error 2
+
+File /home/hyin/code/udacity_repo/SFND_Lidar_Obstacle_Detection/src/quiz/ransac/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/hyin/code/udacity_repo/SFND_Lidar_Obstacle_Detection/src/quiz/ransac/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_379bf/fast"
+/usr/bin/make -f CMakeFiles/cmTC_379bf.dir/build.make CMakeFiles/cmTC_379bf.dir/build
+make[1]: Entering directory '/home/hyin/code/udacity_repo/SFND_Lidar_Obstacle_Detection/src/quiz/ransac/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_379bf.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_379bf.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_379bf
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_379bf.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_379bf.dir/CheckFunctionExists.c.o  -o cmTC_379bf -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_379bf.dir/build.make:97: recipe for target 'cmTC_379bf' failed
+make[1]: *** [cmTC_379bf] Error 1
+make[1]: Leaving directory '/home/hyin/code/udacity_repo/SFND_Lidar_Obstacle_Detection/src/quiz/ransac/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_379bf/fast' failed
+make: *** [cmTC_379bf/fast] Error 2
+
+

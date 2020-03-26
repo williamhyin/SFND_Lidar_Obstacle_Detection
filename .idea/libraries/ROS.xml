@@ -1,0 +1,8 @@
+<component name="libraryTable">
+  <library name="ROS">
+    <CLASSES>
+      <root url="file:///opt/ros/melodic" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
