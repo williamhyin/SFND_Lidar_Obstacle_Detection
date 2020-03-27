@@ -8,7 +8,7 @@
 #include <unordered_set>
 #include <pcl/common/common.h>
 
-namespace hyin::lidar_obstacle_detection {
+namespace lidar_obstacle_detection {
 
     // shorthand for point cloud pointer
     template<typename PointT>

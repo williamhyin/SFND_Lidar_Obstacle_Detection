@@ -4,7 +4,7 @@
 
 #include "cluster3d.h"
 
-using namespace hyin::lidar_obstacle_detection;
+using namespace lidar_obstacle_detection;
 
 template<typename PointT>
 ClusterPts<PointT>::~ClusterPts() {}

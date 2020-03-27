@@ -23,7 +23,7 @@
 #include "ransac3d.cpp"
 #include "cluster3d.cpp"
 
-namespace hyin::lidar_obstacle_detection {
+namespace lidar_obstacle_detection {
 
     // shorthand for point cloud pointer
     template<typename PointT>

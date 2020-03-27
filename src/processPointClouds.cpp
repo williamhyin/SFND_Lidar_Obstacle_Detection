@@ -2,7 +2,7 @@
 
 #include "processPointClouds.h"
 
-using namespace hyin::lidar_obstacle_detection;
+using namespace lidar_obstacle_detection;
 
 //constructor:
 template<typename PointT>
