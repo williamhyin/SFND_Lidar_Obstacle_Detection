@@ -10,7 +10,7 @@ Ransac<PointT>::~Ransac() {}
 
 template<typename PointT>
 std::unordered_set<int> Ransac<PointT>::Ransac3d(PtCdtr<PointT> cloud) {
-    std::unordered_set<int> inliersResult;
+    std::unordered_set<int> inliersResult; // unordered_set element has been unique
     // For max iterations
     while (maxIterations--) {
         std::unordered_set<int> inliers;
@@ -20,9 +20,9 @@ std::unordered_set<int> Ransac<PointT>::Ransac3d(PtCdtr<PointT> cloud) {
         // TO define plane, need 3 points
         float x1, y1, z1, x2, y2, z2, x3, y3, z3;
         auto itr = inliers.begin();
-        x1 = cloud->points[*itr].x; //cloud->points[*itr].x;
-        y1 = cloud->points[*itr].y; //cloud->points[*itr].y;
-        z1 = cloud->points[*itr].z; //cloud->points[*itr].z;
+        x1 = cloud->points[*itr].x;
+        y1 = cloud->points[*itr].y;
+        z1 = cloud->points[*itr].z;
         itr++;
         x2 = cloud->points[*itr].x;
         y2 = cloud->points[*itr].y;
@@ -40,14 +40,14 @@ std::unordered_set<int> Ransac<PointT>::Ransac3d(PtCdtr<PointT> cloud) {
         sqrt_abc = sqrt(a * a + b * b + c * c);
         // Check distance from point to plane
         for (int ind = 0; ind < num_points; ind++) {
-            if (inliers.count(ind) > 0) {
+            if (inliers.count(ind) > 0) { // that means: if the inlier in already exist, we dont need do anymore
                 continue;
             }
             PointT point = cloud->points[ind];
             float x = point.x;
             float y = point.y;
             float z = point.z;
-            float dist = fabs(a * x + b * y + c * z + d) / sqrt_abc;
+            float dist = fabs(a * x + b * y + c * z + d) / sqrt_abc; // calculate the distance between other points and plane
 
             if (dist < distanceTol) {
                 inliers.insert(ind);

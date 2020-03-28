@@ -126,8 +126,8 @@ std::pair<PtCdtr<PointT>, PtCdtr<PointT>>
 ProcessPointClouds<PointT>::SegmentPlane(PtCdtr<PointT> cloud, int maxIterations, float distanceThreshold) {
     // Time segmentation process
     auto startTime = std::chrono::steady_clock::now();
-//	pcl::PointIndices::Ptr inliers;
-    pcl::PointIndices::Ptr inliers(new pcl::PointIndices);
+//	pcl::PointIndices::Ptr inliers; // Build on the stack
+    pcl::PointIndices::Ptr inliers(new pcl::PointIndices); // Build on the heap
     // TODO:: Fill in this function to find inliers for the cloud.
     pcl::ModelCoefficients::Ptr coefficient(new pcl::ModelCoefficients);
     pcl::SACSegmentation<PointT> seg;
@@ -166,20 +166,24 @@ ProcessPointClouds<PointT>::Clustering(PtCdtr<PointT> cloud, float clusterTolera
     std::vector<PtCdtr<PointT>> clusters;
 
     // TODO:: Fill in the function to perform euclidean clustering to group detected obstacles
+    // Build Kd-Tree Object
     typename pcl::search::KdTree<PointT>::Ptr tree(new pcl::search::KdTree<PointT>);
+    // Input obstacle point cloud to create KD-tree
     tree->setInputCloud(cloud);
 
-    std::vector<pcl::PointIndices> clusterIndices;
-    pcl::EuclideanClusterExtraction<PointT> ec;
+    std::vector<pcl::PointIndices> clusterIndices; // this is point cloud indice type
+    pcl::EuclideanClusterExtraction<PointT> ec; // clustering object
     ec.setClusterTolerance(clusterTolerance);
     ec.setMinClusterSize(minSize);
     ec.setMaxClusterSize(maxSize);
     ec.setSearchMethod(tree);
-    ec.setInputCloud(cloud);
-    ec.extract(clusterIndices);
+    ec.setInputCloud(cloud); // feed point cloud
+    ec.extract(clusterIndices); // get all clusters Indice
 
+    // For each cluster indice
     for (pcl::PointIndices getIndices: clusterIndices) {
         PtCdtr<PointT> cloudCluster(new pcl::PointCloud<PointT>);
+        // For each point indice in each cluster
         for (int index:getIndices.indices) {
             cloudCluster->points.push_back(cloud->points[index]);
         }

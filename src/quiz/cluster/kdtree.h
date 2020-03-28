@@ -20,13 +20,13 @@ struct KdTree {
 
     KdTree()
             : root(NULL) {}
-
+// Kd-Tree insert
     void insertHelper(Node **node, uint depth, std::vector<float> point, int id) {
         // Tree is empty
         if (*node == NULL) {
             *node = new Node(point, id);
         } else {
-            // calculate current din
+            // calculate current dim (1 means x axes, 2means y axes)
             uint cd = depth % 2;
             if (point[cd] < ((*node)->point[cd])) {
                 insertHelper(&((*node)->left), depth + 1, point, id);
@@ -41,11 +41,13 @@ struct KdTree {
         // the function should create a new node and place correctly with in the root
         insertHelper(&root, 0, point, id);
     }
+// #############################################################################################################
 
+// Kd-Tree search
     void searchHelper(std::vector<float> target, Node *node, int depth, float distanceTol, std::vector<int> &ids)
     {
         if (node != NULL)
-        {
+        {// Check whether the node inside box  or not, point[0] means x axes, point[1]means y axes
             if ((node->point[0] >= (target[0] - distanceTol) && node->point[0] <= (target[0] + distanceTol)) &&
                 (node->point[1] >= (target[1] - distanceTol) && node->point[1] <= (target[1] + distanceTol)))
             {
@@ -76,7 +78,6 @@ struct KdTree {
         searchHelper(target, root, 0, distanceTol, ids);
         return ids;
     }
-
 
 };
 
