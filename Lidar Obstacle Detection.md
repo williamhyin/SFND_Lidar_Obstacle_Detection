@@ -67,7 +67,7 @@ pcl::PointCloud<pcl::PointXYZI>::Ptr inputCloudI;
 
 ![](https://williamhyin-1301408646.cos.ap-shanghai.myqcloud.com/img/20200328115231.png)
 
-​																真实PCD数据
+真实PCD数据
 
 ### Point Processing
 
@@ -94,7 +94,7 @@ ProcessPointClouds<pcl::PointXYZI> pointProcessorI;
 
    ![](https://williamhyin-1301408646.cos.ap-shanghai.myqcloud.com/img/20200328113024.png)
 
-   　　　　　　　　　　　　感兴趣区域及体素网格过滤后的结果
+   感兴趣区域及体素网格过滤后的结果
 
    以下是Filtering的代码实现：
 
@@ -157,7 +157,7 @@ Segmentation的任务是将属于道路的点和属于场景的点分开。点�
 
 ![](https://williamhyin-1301408646.cos.ap-shanghai.myqcloud.com/img/20200328115422.png)
 
-​																		点云分割的结果
+点云分割的结果
 
 ##### PCL RANSAC Segmentaion 
 
@@ -233,47 +233,13 @@ ProcessPointClouds<PointT>::SeparateClouds(pcl::PointIndices::Ptr inliers, PtCdt
 ![](https://williamhyin-1301408646.cos.ap-shanghai.myqcloud.com/img/20200319162652.gif)
 
 以下将介绍RANSAC的平面计算公式：
-$$
-Ax+By+Cz+D=0
-$$
 
-- point1 = (x1, y1, z1)
-- point2 = (x2, y2, z2)
-- point3 = (x3, y3, z3)
-
-使用point1作为参考，定义v1, v2两个向量
-
-- Vector v1 travels from point1 to point2
-- Vector v2 travels from point1 to point3
-
-$$
-v1 = < x2 - x1, y2 - y1, z2 - z1 >
-
-v2 = < x3 - x1, y3 - y1, z3 - z1 >
-$$
-
-v1 x v2为平面的法向量
-$$
-v1×v2=<(y2−y1)(z3−z1)−(z2−z1)(y3−y1),
-(z2-z1)(x3-x1)-(x2-x1)(z3-z1),
-(x2-x1)(y3-y1)-(y2-y1)(x3-x1)>
-$$
-简化为
-$$
-v1 \times v2 = < i, j, k >
-$$
-<img src="https://williamhyin-1301408646.cos.ap-shanghai.myqcloud.com/img/20200327180040.png" style="zoom: 67%;" />
+![image-20200328122724248](/home/hyin/.config/Typora/typora-user-images/image-20200328122724248.png)
 
 然后我们需要计算点 `(x,y,z)`到平面的距离
-$$
-d=∣A∗x+B∗y+C∗z+D∣/sqrt(A 
-2
- +B 
-2
- +C 
-2
- )
-$$
+
+<img src="https://williamhyin-1301408646.cos.ap-shanghai.myqcloud.com/img/20200328122825.png" style="zoom:80%;" />
+
 以下为平面RANSAC的主体代码
 
 ```c++
@@ -341,7 +307,7 @@ std::unordered_set<int> Ransac<PointT>::Ransac3d(PtCdtr<PointT> cloud) {
 
 ![](https://williamhyin-1301408646.cos.ap-shanghai.myqcloud.com/img/20200328120149.png)
 
-​																		欧氏聚类的结果
+欧氏聚类的结果
 
 ##### PCL Euclidean clustering
 
@@ -415,7 +381,7 @@ ProcessPointClouds<PointT>::Clustering(PtCdtr<PointT> cloud, float clusterTolera
 
   ![](https://williamhyin-1301408646.cos.ap-shanghai.myqcloud.com/img/20200328084814.png)
 
-  ​														`KD-Tree `structure
+  `KD-Tree `　结构
 
   
 
