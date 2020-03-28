@@ -2,7 +2,7 @@
 
 <img src="media/ObstacleDetectionFPS.gif" width="700" height="400" />
 
-**For more details , please check out the <u>Lidar Obstacle Detection.md</u> file.**
+**For more details , please check my blog https://blog.csdn.net/williamhyin/article/details/105159842 .**
 
 ### Welcome to the Sensor Fusion course for self-driving cars.
 
